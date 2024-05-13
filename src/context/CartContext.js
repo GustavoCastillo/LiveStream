@@ -7,7 +7,9 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
-  const [cartCount, setCartCount] = useState(0);
+  const moviesList = JSON.parse(localStorage.getItem('moviesList')) || [];
+ 
+  const [cartCount, setCartCount] = useState(moviesList.length);
 
   const addToCart = () => {
     setCartCount(cartCount + 1);

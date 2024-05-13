@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { resizeImage } from "../shared/utils";
+import { Link } from 'react-router-dom';
 
 interface CarouselProps {
   movies: [];
@@ -12,7 +13,7 @@ interface CarouselProps {
 
 const Carousel : FC<CarouselProps> = ({movies, isCard}) => {
   const imageSize = !isCard ? 'w1280' : 'w342';
-  const sliderNav = document.querySelector('.slick-slider');
+  const sliderNav = document.querySelector('#root');
   const parentWidth = sliderNav?.parentElement?.offsetWidth;
   let maxItems = Math.round(parentWidth / 201);
   
@@ -22,6 +23,7 @@ const Carousel : FC<CarouselProps> = ({movies, isCard}) => {
     speed: 500,
     slidesToShow: !isCard ?  1 : maxItems,
     slidesToScroll: !isCard ? 1 : 3,
+    swipeToswipeToSlide: true, 
     autoplay: !isCard ? true : false,
     autoplaySpeed: 3000,
     adaptiveHeight: true,
@@ -62,16 +64,18 @@ const Carousel : FC<CarouselProps> = ({movies, isCard}) => {
         <Slider {...settings}>
           {movies.map((movie) => (
             <div key={movie.id} className={`${!isCard ? "!w-full h-[500px]" : "!w-[175px] h-[280px]"} relative flex items-center justify-center`}>
-              <div className="top-0 left-0 w-full h-full">
-                <img
-                  src={resizeImage(!isCard ? movie?.backdrop_path : movie?.poster_path, imageSize)}
-                  alt={movie.name}
-                  className="object-cover w-full h-full rounded-lg shadow-md"
-                />
-                <div className="absolute top-0 right-0 mt-2 mr-2 bg-red-500 text-white px-3 py-2 rounded-full text-lg font-semibold">
-                  {parseFloat(movie.vote_average).toFixed(1)}
+               <Link to={`/movie/${movie.id}`}>
+                <div className="top-0 left-0 w-full h-full">
+                  <img
+                    src={resizeImage(!isCard ? movie?.backdrop_path : movie?.poster_path, imageSize)}
+                    alt={movie.name}
+                    className="object-cover w-full h-full rounded-lg shadow-md"
+                  />
+                  <div className="absolute top-0 right-0 mt-2 mr-2 bg-red-500 text-white px-3 py-2 rounded-full text-lg font-semibold">
+                    {parseFloat(movie.vote_average).toFixed(1)}
+                  </div>
                 </div>
-              </div>
+              </Link>
               {!isCard ? (
                 <div className="absolute bottom-0 left-0 right-0 bg-gray-800 bg-opacity-50 text-white p-2">
                   <h3 className="text-red-500 text-lg font-semibold">{movie.title}</h3>

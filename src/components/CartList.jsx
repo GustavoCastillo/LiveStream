@@ -11,15 +11,15 @@ const CartList = () => {
         {moviesList.map((movie, index) => (
             <CartItem movie={{movie, index}}/>
         ))}
-        <li className="py-4 flex justify-between items-center">
+        <div className="py-4 flex justify-between items-center">
           <span className="text-lg font-semibold">Total:</span>
           <TotalCart/>
-        </li>
-        <li className="py-4 flex justify-center">
+        </div>
+        <div className="py-4 flex justify-center">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
             Pay Now
           </button>
-        </li>
+        </div>
       </ul>
     </div>
   );

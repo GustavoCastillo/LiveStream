@@ -20,8 +20,10 @@ const SearchBox = () => {
     setIsFocused(true);
   };
 
-  const handleInputBlur = () => {
+  const handleOptionClick  = (keyword) => {
+    navigate(`/search?query=${encodeURIComponent(keyword.name)}`);
     setIsFocused(false);
+    setSearchText('');
   };
 
   return (
@@ -34,21 +36,18 @@ const SearchBox = () => {
           value={searchText}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
-          //onBlur={handleInputBlur}
         />
         <FontAwesomeIcon icon={faSearch} className="text-gray-500 absolute right-3 cursor-pointer" />
       </div>
       {isFocused && (
-        <ul className="absolute top-full left-0 z-10 w-full bg-black bg-opacity-75 p-2 rounded-b-md shadow-md max-h-40 overflow-y-auto" style={{ overflowY: 'auto' }}>
+        <ul className="absolute top-full left-0 z-10 w-full bg-black bg-opacity-75 rounded-b-md shadow-md max-h-40 overflow-y-auto" style={{ overflowY: 'auto' }}>
         {suggestion?.results?.map((keyword, index) => (
          <li
          key={index}
          className="p-2 cursor-pointer hover:bg-gray-800"
           >
             <button
-                onClick={() => {
-                  navigate(`/search?query=${encodeURIComponent(keyword.name)}`);
-                }}
+                 onClick={() => handleOptionClick(keyword)}
                 className="flex items-center gap-3 ml-5 hover:text-white transition duration-300"
               >
                 <span>{keyword.name}</span>
