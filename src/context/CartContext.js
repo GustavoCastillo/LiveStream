@@ -10,6 +10,7 @@ export const CartProvider = ({ children }) => {
   const moviesList = JSON.parse(localStorage.getItem('moviesList')) || [];
  
   const [cartCount, setCartCount] = useState(moviesList.length);
+  const [showMovie, setShowMovie] = useState(false);
 
   const addToCart = () => {
     setCartCount(cartCount + 1);
@@ -20,9 +21,12 @@ export const CartProvider = ({ children }) => {
       setCartCount(cartCount - 1);
     }
   };
+  const completedPayment = () => {
+      setShowMovie(true);
+  };
 
   return (
-    <CartContext.Provider value={{ cartCount, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cartCount, addToCart, removeFromCart,showMovie,completedPayment }}>
       {children}
     </CartContext.Provider>
   );
