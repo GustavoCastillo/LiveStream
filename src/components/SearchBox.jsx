@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSearchBox } from "../hooks/useSearchBox";
 import { MOVIE_API_URL, API_KEY } from "../shared/constants";

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { API_KEY, MOVIE_API_URL } from '../shared/constants';
 import { useSearchBox } from "../hooks/useSearchBox";

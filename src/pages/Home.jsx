@@ -1,10 +1,8 @@
-import React, {useContext} from 'react';
 import Carousel from "../components/Carousel";
-import { StreamingContext } from "../context/CartContext";
 import { useMovies } from "../hooks/useMovies";
 import { MOVIE_API_URL, API_KEY  } from "../shared/constants";
 const Home = () => {
-  const topUrl = `${MOVIE_API_URL}/movie/top_rated?api_key=${API_KEY}`;
+  const topUrl = `${MOVIE_API_URL}/trending/movie/day?api_key=${API_KEY}`;
   const popularUrl = `${MOVIE_API_URL}/movie/popular?api_key=${API_KEY}`;
 
   let options = {
@@ -16,7 +14,7 @@ const Home = () => {
   return ( 
     <>
     <Carousel movies={topMovies.results} isCard={false}/>
-    <Carousel movies={popularMovies.results}isCard ={true} />
+    <Carousel movies={popularMovies.results} isCard ={true} />
     </>
   )
 };

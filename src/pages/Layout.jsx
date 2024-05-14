@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import SearchBox from "../components/SearchBox";
 import Cart from "../components/Cart";
@@ -14,12 +13,6 @@ const Layout = () => {
             <Link to={"/"} className="text-lg text-white-800 no-underline hover:text-blue-dark">
               Home
             </Link>
-            {/* <Link to={"/movie/845111"} className="text-lg text-gray-800 no-underline hover:text-blue-dark">
-              Movie
-            </Link>
-            <Link to={"/search"} className="text-lg text-gray-800 no-underline hover:text-blue-dark">
-              Search
-            </Link> */}
           </nav>
         </div>
         <SearchBox />
